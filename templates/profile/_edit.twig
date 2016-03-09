@@ -1,0 +1,65 @@
+{#
+ # Passed in variables:
+ #
+ #}
+{% extends twigparent %}
+
+{% block members %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <div class="row">
+        <h4>Edit Profile</h4>
+    </div>
+
+    <div class="row profile">
+
+        <div class="small-12 columns">
+
+            {{ form_start(form_profile) }}
+
+            {{ form_row(form_profile.displayname) }}
+            {{ form_row(form_profile.email) }}
+            {{ form_row(form_profile.password.first }}
+            {{ form_row(form_profile.password.second }}
+
+            {{ form_row(form_profile.address_street) }}
+            {{ form_row(form_profile.address_street_meta }}
+            {{ form_row(form_profile.address_city) }}
+            {{ form_row(form_profile.address_state) }}
+            {{ form_row(form_profile.address_country) }}
+            {{ form_row(form_profile.phone_number) }}
+
+            <br>
+            {{ form_row(form_profile.submit) }}
+
+            {{ form_end(form_profile) }}
+
+        </div>
+
+        <div class="small-12 columns">
+            <h5>Registered Social Media Accounts</h5>
+
+            <ul>
+                {%- for provider in member_providers() %}
+                    <li><i class="fa fa-{{ provider }}">  {{ provider|title }}</i></li>
+                {% endfor -%}
+            </ul>
+        </div>
+
+        <div class="small-12 columns">
+            <h5>Add Social Media Account</h5>
+
+            {{ form_start(form_associate) }}
+
+            {% for provider in providers|keys %}
+                {% if provider != 'local' %}
+                    {{ form_row(form_associate[provider]) }}
+                {% endif %}
+            {% endfor %}
+
+            {{ form_end(form_associate) }}
+        </div>
+
+    </div>
+
+    {% include 'feedback.twig' %}
+{% endblock %}
