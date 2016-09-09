@@ -2,8 +2,10 @@
 
 namespace Bolt\Extension\Bolt\MembersAddonExample;
 
+use Bolt\Extension\Bolt\Members\Event\FormBuilderEvent;
 use Bolt\Extension\Bolt\Members\Event\MembersEvents;
 use Bolt\Extension\Bolt\Members\Event\MembersProfileEvent;
+use Bolt\Extension\Bolt\Members\Form\MembersForms;
 use Bolt\Extension\SimpleExtension;
 use Silex\Application;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -32,6 +34,7 @@ class MembersAddonExampleExtension extends SimpleExtension
     protected function subscribe(EventDispatcherInterface $dispatcher)
     {
         $dispatcher->addListener(MembersEvents::MEMBER_PROFILE_PRE_SAVE, [$this, 'onProfileSave']);
+        $dispatcher->addListener(FormBuilderEvent::BUILD, [$this, 'onRequest']);
     }
 
     /**
@@ -59,7 +62,6 @@ class MembersAddonExampleExtension extends SimpleExtension
     public function boot(Application $app)
     {
         parent::boot($app);
-        $this->onRequest($app);
     }
 
     /**
@@ -74,30 +76,16 @@ class MembersAddonExampleExtension extends SimpleExtension
     }
 
     /**
-     * @param Application $app
+     * @param FormBuilderEvent $event
      */
-    public function onRequest(Application $app)
+    public function onRequest(FormBuilderEvent $event)
     {
-        $app['members.form.components'] = $app->extend(
-            'members.form.components',
-            function ($components, $app) {
-                $components['type']['profile_edit'] = $app->share(
-                    function () use ($app) {
-                        $type = new Form\Type\ProfileEditType($app['members.config']);
-                        $type->setLocalConfig($app['members.addons.config']);
-
-                        return $type;
-                    }
-                );
-                $components['entity']['profile'] = $app->share(
-                    function () use ($app) {
-                        return new Form\Entity\Profile($app['members.records']);
-                    }
-                );
-
-                return $components;
-            }
-        );
+        if ($event->getName() !== MembersForms::FORM_PROFILE_EDIT && $event->getName() !== MembersForms::FORM_PROFILE_VIEW) {
+            return;
+        }
+        $app = $this->getContainer();
+        $event->setType(new Form\Type\ProfileEditType($app['members.config']));
+        $event->setEntityClass(Form\Entity\Profile::class);
     }
 
     /**
