@@ -40,25 +40,6 @@ class MembersAddonExampleExtension extends SimpleExtension
     /**
      * {@inheritdoc}
      */
-    protected function registerServices(Application $app)
-    {
-        $config = $this->getConfig();
-        $app['members.addons.config'] = $app->share(
-            function () use ($config) {
-                return new Config($config);
-            }
-        );
-
-        $app['members.meta_fields'] = $app->share(
-            function ($app) use ($config) {
-                return $app['members.meta_fields'] + $config['meta_fields'];
-            }
-        );
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function boot(Application $app)
     {
         parent::boot($app);
@@ -72,7 +53,7 @@ class MembersAddonExampleExtension extends SimpleExtension
     public function onProfileSave(MembersProfileEvent $event)
     {
         $config = $this->getConfig();
-        $event->addMetaFieldNames(array_keys($config['meta_fields']['profile']));
+        $event->addMetaEntryNames(array_keys($config['meta_fields']['profile']));
     }
 
     /**
