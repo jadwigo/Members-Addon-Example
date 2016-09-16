@@ -64,8 +64,14 @@ class MembersAddonExampleExtension extends SimpleExtension
         if ($event->getName() !== MembersForms::FORM_PROFILE_EDIT && $event->getName() !== MembersForms::FORM_PROFILE_VIEW) {
             return;
         }
+
         $app = $this->getContainer();
-        $event->setType(new Form\Type\ProfileEditType($app['members.config']));
+        $localConfig = new Config($this->getConfig());
+
+        $type = new Form\Type\ProfileEditType($app['members.config']);
+        $type->setLocalConfig($localConfig);
+
+        $event->setType($type);
         $event->setEntityClass(Form\Entity\Profile::class);
     }
 

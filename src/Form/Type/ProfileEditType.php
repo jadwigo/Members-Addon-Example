@@ -29,42 +29,36 @@ class ProfileEditType extends MembersProfileEditType
         $builder
             ->add('address_street', Type\TextType::class,   [
                 'label'       => Trans::__('Street Address:'),
-                'data'        => $this->getData($options, 'address_street'),
                 'constraints' => [
                 ],
                 'required'    => $this->localConfig->isAddressStreetRequired(),
             ])
             ->add('address_street_meta', Type\TextType::class,   [
                 'label'       => null,
-                'data'        => $this->getData($options, 'address_street_meta'),
                 'constraints' => [
                 ],
                 'required'    => $this->localConfig->isAddressStreetMetaRequired(),
             ])
             ->add('address_city', Type\TextType::class,   [
                 'label'       => Trans::__('City:'),
-                'data'        => $this->getData($options, 'address_city'),
                 'constraints' => [
                 ],
                 'required'    => $this->localConfig->isAddressCityRequired(),
             ])
             ->add('address_state', Type\TextType::class,   [
                 'label'       => Trans::__('Province / state / arrondissement:'),
-                'data'        => $this->getData($options, 'address_state'),
                 'constraints' => [
                 ],
                 'required'    => $this->localConfig->isAddressStateRequired(),
             ])
             ->add('address_country', Type\TextType::class,   [
                 'label'       => Trans::__('Country:'),
-                'data'        => $this->getData($options, 'address_country'),
                 'constraints' => [
                 ],
                 'required'    => $this->localConfig->isAddressCountryRequired(),
             ])
             ->add('phone_number', Type\TextType::class,   [
                 'label'       => Trans::__('Phone number:'),
-                'data'        => $this->getData($options, 'phone_number'),
                 'constraints' => [
                 ],
                 'required'    => $this->localConfig->isPhoneNumberRequired(),
