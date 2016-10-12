@@ -38,14 +38,6 @@ class MembersAddonExampleExtension extends SimpleExtension
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function boot(Application $app)
-    {
-        parent::boot($app);
-    }
-
-    /**
      * Tell Members what fields we want to persist.
      *
      * @param MembersProfileEvent $event
