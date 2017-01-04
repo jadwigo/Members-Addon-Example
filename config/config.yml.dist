@@ -1,14 +1,4 @@
 meta_fields:
     profile:
-        address_street:
-            required: false
-        address_street_meta:
-            required: false
-        address_city:
-            required: false
-        address_state:
-            required: false
-        address_country:
-            required: false
-        phone_number:
+        wm_member_tag:
             required: false

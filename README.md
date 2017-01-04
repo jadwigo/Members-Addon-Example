@@ -1,4 +1,4 @@
-Example Add-on Extension for Members
+Wikimedia member tag profile addon
 ------------------------------------
 
-This is just an example extension to illustrate how to extend the Members extension.
+Add a Tag to a profile for Wikimedia usage

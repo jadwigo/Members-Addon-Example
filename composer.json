@@ -1,9 +1,11 @@
 {
-    "name": "bolt/members-addon-example",
-    "description": "Membership add-on customisations example",
+    "name": "jadwigo/wmmembertag",
+    "description": "Wikimedia member tag profile addon",
     "type": "bolt-extension",
     "keywords": [
-        "addon"
+        "addon",
+        "statistics",
+        "wikimedia"
     ],
     "require": {
         "php": ">=5.5.9",
@@ -15,22 +17,26 @@
         {
             "name": "Gawain Lynch",
             "email": "gawain.lynch@gmail.com"
+        },
+        {
+            "name": "Lodewijk Evers",
+            "email": "lodewijk@twokings.nl"
         }
     ],
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "Bolt\\Extension\\Bolt\\MembersAddonExample\\": "src"
+            "Bolt\\Extension\\Jadwigo\\WmMemberTag\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Bolt\\Extension\\Bolt\\MembersAddonExample\\Tests\\": "tests"
+            "Bolt\\Extension\\Jadwigo\\WmMemberTag\\Tests\\": "tests"
         }
     },
     "extra": {
         "bolt-assets": "web",
-        "bolt-class": "Bolt\\Extension\\Bolt\\MembersAddonExample\\MembersAddonExampleExtension",
+        "bolt-class": "Bolt\\Extension\\Jadwigo\\WmMemberTag\\WmMemberTagExtension",
         "branch-alias": {
             "dev-master": "3.0.x-dev"
         }

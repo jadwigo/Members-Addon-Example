@@ -1,6 +1,6 @@
 <?php
 
-namespace Bolt\Extension\Bolt\MembersAddonExample;
+namespace Bolt\Extension\Jadwigo\WmMemberTag;
 
 use Bolt\Extension\Bolt\Members\Event\FormBuilderEvent;
 use Bolt\Extension\Bolt\Members\Event\MembersEvents;
@@ -13,9 +13,9 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 /**
  * Members add-ons for Bolt.
  *
- * @author Gawain Lynch <gawain.lynch@gmail.com>
+ * @author Lodewijk Evers <lodewijk@twokings.nl>
  */
-class MembersAddonExampleExtension extends SimpleExtension
+class WmMemberTagExtension extends SimpleExtension
 {
     /**
      * {@inheritdoc}
@@ -75,22 +75,7 @@ class MembersAddonExampleExtension extends SimpleExtension
         return [
             'meta_fields' => [
                 'profile' => [
-                    'address_street' => [
-                        'required' => false,
-                    ],
-                    'address_street_meta' => [
-                        'required' => false,
-                    ],
-                    'address_city' => [
-                        'required' => false,
-                    ],
-                    'address_state' => [
-                        'required' => false,
-                    ],
-                    'address_country' => [
-                        'required' => false,
-                    ],
-                    'phone_number' => [
+                    'wm_member_tag' => [
                         'required' => false,
                     ],
                 ],

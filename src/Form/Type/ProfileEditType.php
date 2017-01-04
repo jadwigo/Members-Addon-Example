@@ -1,9 +1,9 @@
 <?php
 
-namespace Bolt\Extension\Bolt\MembersAddonExample\Form\Type;
+namespace Bolt\Extension\Jadwigo\WmMemberTag\Form\Type;
 
 use Bolt\Extension\Bolt\Members\Form\Type\ProfileEditType as MembersProfileEditType;
-use Bolt\Extension\Bolt\MembersAddonExample\Config;
+use Bolt\Extension\Jadwigo\WmMemberTag\Config;
 use Bolt\Translation\Translator as Trans;
 use Symfony\Component\Form\Extension\Core\Type;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Profile type
  *
- * @author Gawain Lynch <gawain.lynch@gmail.com>
+ * @author Lodewijk Evers <lodewijk@twokings.nl>
  */
 class ProfileEditType extends MembersProfileEditType
 {
@@ -27,41 +27,11 @@ class ProfileEditType extends MembersProfileEditType
         parent::buildForm($builder, $options);
 
         $builder
-            ->add('address_street', Type\TextType::class,   [
-                'label'       => Trans::__('Street Address:'),
+            ->add('wm_member_tag', Type\TextType::class,   [
+                'label'       => Trans::__('Member Tag:'),
                 'constraints' => [
                 ],
-                'required'    => $this->localConfig->isAddressStreetRequired(),
-            ])
-            ->add('address_street_meta', Type\TextType::class,   [
-                'label'       => null,
-                'constraints' => [
-                ],
-                'required'    => $this->localConfig->isAddressStreetMetaRequired(),
-            ])
-            ->add('address_city', Type\TextType::class,   [
-                'label'       => Trans::__('City:'),
-                'constraints' => [
-                ],
-                'required'    => $this->localConfig->isAddressCityRequired(),
-            ])
-            ->add('address_state', Type\TextType::class,   [
-                'label'       => Trans::__('Province / state / arrondissement:'),
-                'constraints' => [
-                ],
-                'required'    => $this->localConfig->isAddressStateRequired(),
-            ])
-            ->add('address_country', Type\TextType::class,   [
-                'label'       => Trans::__('Country:'),
-                'constraints' => [
-                ],
-                'required'    => $this->localConfig->isAddressCountryRequired(),
-            ])
-            ->add('phone_number', Type\TextType::class,   [
-                'label'       => Trans::__('Phone number:'),
-                'constraints' => [
-                ],
-                'required'    => $this->localConfig->isPhoneNumberRequired(),
+                'required'    => $this->localConfig->isMemberTagRequired(),
             ])
             ->add('submit',      'submit', [
                 'label'   => Trans::__('Save & continue'),
